@@ -18,6 +18,18 @@ app.get('/inventario/saludo/:empleado',Auth,Logger,Saludo,(req,res)=>{
     res.json({mensaje:`Saludos ${name},${req.saludo}`});
 });
 
+app.get('/inventario/buscar',Auth,Logger,(req,res)=>{
+    const {producto} = req.query;
+    if(producto){
+        res.json({mensaje:`Buscando informacion de : ${producto}`});
+    }else{
+        res.status(400).json({mensaje:`Parametro ${producto} no valido`});
+    }
+});
+
+app.get('/auditoria',Logger,(req,res)=>{
+    res.json({mensaje: "Auditoria: registro de accesos a la API"});
+});
 
 app.listen(PORT,()=>{
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
