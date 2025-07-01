@@ -1,5 +1,5 @@
-export function Auth (req,res,next){
-    const token =req.headers['Authorization'];
+export function auth (req,res,next){
+    const token =req.headers['authorization'];
     if(token === 'erp-super-secreto'){
         next ();
     }else{

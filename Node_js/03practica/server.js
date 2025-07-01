@@ -1,25 +1,29 @@
 //Importaciones
 import express from 'express';
-import { Logger } from '../03practica/middlewares/logger.js'
-import { Saludo } from '../03practica/middlewares/saludo.js';
-import { Auth } from '../03practica/middlewares/auth.js';
+import { logger} from '../03practica/middlewares/logger.js'
+import { saludo } from '../03practica/middlewares/saludo.js';
+import { auth } from '../03practica/middlewares/auth.js';
 
 const app = express();
 const PORT = 3000;
+
+// Correcciones
+
+const productos = ["tornillo","tuerca","arandela","valvula"];
+
 //Ruta 1
-app.get('/inventario',Auth,Logger,(req,res)=>{
-    const {producto} =req.query
-    res.json({mensaje:'Bienvenido al inventario'})
+app.get('/inventario',auth,logger,(req,res)=>{
+    res.json({productos});
 
 });
 
-app.get('/inventario/saludo/:empleado',Auth,Logger,Saludo,(req,res)=>{
-    const {name}=req.params;
-    res.json({mensaje:`Saludos ${name},${req.saludo}`});
+app.get('/inventario/saludo/:empleado',auth,logger,saludo,(req,res)=>{
+    const {empleado}=req.params;
+    res.json({mensaje:`${req.saludo},${empleado}. Bienvenid al inventario industrial`});
 });
 
-app.get('/inventario/buscar',Auth,Logger,(req,res)=>{
-    const {producto} = req.query;
+app.get('/inventario/buscar',auth,logger,(req,res)=>{
+    const {producto} = req.query;85
     if(producto){
         res.json({mensaje:`Buscando informacion de : ${producto}`});
     }else{
@@ -27,7 +31,7 @@ app.get('/inventario/buscar',Auth,Logger,(req,res)=>{
     }
 });
 
-app.get('/auditoria',Logger,(req,res)=>{
+app.get('/auditoria',logger,(req,res)=>{
     res.json({mensaje: "Auditoria: registro de accesos a la API"});
 });
 
