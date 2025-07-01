@@ -3,35 +3,42 @@ import express from 'express';
 import {logger} from './src/middlewares/logger.js';
 import {parseQuery} from './src/middlewares/parseQuery.js';
 import {loadData} from './src/storage.js';
-
-
+import { saludoMiddleware } from './src/middlewares/saludo.js';
+import { authMiddleware } from './src/middlewares/auth.js';
 
 const app = express();
 await loadData();
 const port = 3000; // esto es nuevo para mi
 
+app.get('/erp/inventario', authMiddleware,(req,res)=>{
+    res.json({mensaje:'Bienvenido al invetario del ERP. Solo usarios autorizados ven esto.'})
+});
 
+app.get('/saludo/:name',saludoMiddleware,(req,res)=>{
+    const {name}=req.params;
+    res.json({mensaje:`${req.saludo},${name}`});
+});
 
-app.get('/:name',logger,(req,res)=>{ //  antes del => se manda a llamar todas las funciones 
+//app.get('/:name',logger,(req,res)=>{ //  antes del => se manda a llamar todas las funciones 
    http://localhost:3000/Juan/Monitor?nombre=Rodrigo&isAdmin=true
 
-   if(req.query.isAdmin==='true'){
-    res.end(`Welcome Admin ${req.params.name} to your API`);
-   }
-   else{
-    res.end(`Welcome ${req.params.name}`);
-   }
+  // if(req.query.isAdmin==='true'){
+    //res.end(`Welcome Admin ${req.params.name} to your API`);
+  // }
+   //else{
+   // res.end(`Welcome ${req.params.name}`);
+  // }
 
 
-});
+//});
 
-app.get('/saludo/:name',logger,(req,res)=>{
-    const {name} = req.params;
-    res.json({mensaje:`Hola ${name}`});
+//app.get('/saludo/:name',logger,(req,res)=>{
+  //  const {name} = req.params;
+  //  res.json({mensaje:`Hola ${name}`});
 
 
 
-});
+//});
 
 app.get('/api/edad',logger,(req,res)=>{
     const anioNacimiento = parseInt(req.query.anioNacimiento);
