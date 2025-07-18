@@ -1,7 +1,7 @@
 const express = require('express');
-const connectDB = require('./src/config/database');
+const connectDB = require('./config/database');
 const TaskRoutes = require('./src/routes/TaskRoutes');
-const port = 3000;ls
+const port = 3000;
 const app = express ();
 
 connectDB(app);
