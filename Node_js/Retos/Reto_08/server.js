@@ -25,8 +25,8 @@ conectarBD();
 // Rutas
 app.use("/", routes);
 
-// Middleware para rutas no encontradas
-app.use("*", (req, res) => {
+// Middleware para rutas no encontradas (SIN asterisco)
+app.use((req, res) => {
   res.status(404).json({
     error: "Ruta no encontrada",
     mensaje: `La ruta ${req.method} ${req.originalUrl} no existe`,
