@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ali Velazquez",
+    "correo": "ali@correo.com",
+    "contrasena": "123456",
+    "rol": "usuario"
+  },
+  {
+    "id": 2,
+    "nombre": "Edson Moreno",
+    "correo": "edson@correo.com",
+    "contrasena": "password123",
+    "rol": "admin"
+  },
+  {
+    "id": 3,
+    "nombre": "Cesar Arcos",
+    "correo": "cesar@correo.com",
+    "contrasena": "mipassword",
+    "rol": "usuario"
+  }
+]
