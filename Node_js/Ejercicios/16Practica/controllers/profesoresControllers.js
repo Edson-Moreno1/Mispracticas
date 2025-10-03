@@ -1,3 +1,4 @@
+const db = require('../database/conexion.js');
 class ProfesoresControllers{
     constructor(){}
     consultar(req,res){
