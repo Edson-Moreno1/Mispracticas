@@ -24,7 +24,7 @@ class EstudianteController {
         const {id} =req.params;
         try{
             db.query(
-                `SELECT * FROM estudiantes WHERE id=?`,[id],
+                   `SELECT * FROM estudiantes WHERE id=?`,[id],
                 (err,rows)=>{
                     if(err){
                     res.status(400).send(err);

@@ -6,7 +6,7 @@ route.post('/',mascotasController.create);
 route.get('/',mascotasController.getAll);
 
 route.route('/:id')
-    .get(mascotasController.getById)
+    .get(mascotasController.getOne)
     .put(mascotasController.update)
     .delete(mascotasController.delete);
 
